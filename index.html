@@ -6,7 +6,7 @@
 <style>
   :root{
     --bg:#f5f5f7;
-    --text:#1d1d1f;
+    --text:#222222;
     --sub:#6e6e73;
     --divider:#d6d6db;
     --border:#e2e2e6;
@@ -33,6 +33,7 @@
     font-size:18px;
     font-weight:600;
     margin:0 0 16px;
+    color:#222222;
   }
 
   /* 일정 박스를 감싸는 3단 그리드 */
@@ -71,7 +72,7 @@
     display:flex;
     align-items:flex-start;
     gap:20px;
-    padding:14px 0;
+    padding:18px 0;
     border-bottom:1px solid var(--border);
   }
   .schedule-item:last-child{
@@ -92,26 +93,27 @@
   .schedule-desc{
     font-size:14px;
     line-height:1.5;
-    color:var(--text);
+    color:#222222;
   }
-  .schedule-sub{
-  margin:6px 0 0;
-  padding-left:18px;
-  font-size:13px;
-  color:var(--sub);
-}
 
+  /* 설명 안의 하위 목록 (- 항목 등) */
+  .schedule-sub{
+    margin:6px 0 0;
+    padding-left:18px;
+    font-size:13px;
+    color:#222222;
+  }
+  .schedule-sub li{
+    margin-bottom:2px;
+    color:#222222;
+  }
+
+  /* 리스트 아래 주석: 구분선 없이 여백으로만 구분 */
   .schedule-comment{
-  margin:10px 0 0;
-  padding-top:8px;
-  border-top:1px dashed var(--border);
-  font-size:12px;
-  color:var(--sub);
-}
-  
-.schedule-sub li{
-  margin-bottom:2px;
-}
+    margin:10px 0 0;
+    font-size:12px;
+    color:var(--sub);
+  }
 
   .divider{
     border:none;
@@ -131,6 +133,7 @@
   <div class="section-primary">
     <h2 class="section-title">1번째</h2>
     <div class="schedule-list">
+
       <div class="schedule-item">
         <div class="schedule-time">09:00</div>
         <div class="schedule-body">
@@ -138,19 +141,21 @@
           <p class="schedule-comment">참고사항.</p>
         </div>
       </div>
+
       <div class="schedule-item">
         <div class="schedule-time">10:30</div>
         <div class="schedule-body">
-        <div class="schedule-desc">
-  설명 텍스트가 들어가는 자리입니다.
-  <ul class="schedule-sub">
-    <li>이렇게 항목도 가능</li>
-    <li>이렇게 항목도 가능</li>
-            <p class="schedule-comment">참고 사항을 입력하세요.</p>
-  </ul>
-</div>
+          <div class="schedule-desc">
+            설명 텍스트가 들어가는 자리입니다.
+            <ul class="schedule-sub">
+              <li>이렇게 항목도 가능</li>
+              <li>이렇게 항목도 가능</li>
+            </ul>
+          </div>
+          <p class="schedule-comment">참고 사항을 입력하세요.</p>
         </div>
       </div>
+
       <div class="schedule-item">
         <div class="schedule-time">13:00</div>
         <div class="schedule-body">
@@ -158,6 +163,7 @@
           <p class="schedule-comment">참고 사항을 입력하세요.</p>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -165,6 +171,7 @@
   <div class="section-primary">
     <h2 class="section-title">2번째</h2>
     <div class="schedule-list">
+
       <div class="schedule-item">
         <div class="schedule-time">14:00</div>
         <div class="schedule-body">
@@ -172,6 +179,7 @@
           <p class="schedule-comment">참고 사항을 입력하세요.</p>
         </div>
       </div>
+
       <div class="schedule-item">
         <div class="schedule-time">16:00</div>
         <div class="schedule-body">
@@ -179,10 +187,9 @@
           <p class="schedule-comment">참고 사항을 입력하세요.</p>
         </div>
       </div>
+
     </div>
   </div>
-
- 
 
   </div>
 
