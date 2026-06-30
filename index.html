@@ -58,7 +58,7 @@
     background:#ffffff;
     border-radius:12px;
     border:1px solid var(--border);
-    padding:24px 32px 28px;
+    padding:24px 24px 28px;
     margin-bottom:8px;
     box-shadow:0 4px 16px rgba(0,0,0,0.05);
   }
@@ -70,13 +70,14 @@
   }
   .schedule-item{
     display:flex;
-    align-items:flex-start;
-    gap:20px;
-    padding:18px 0;
-    border-bottom:1px solid var(--border);
+    align-items:stretch;
+    gap:0;
+    padding:0;
+    margin-bottom:28px;
+    position:relative;
   }
   .schedule-item:last-child{
-    border-bottom:none;
+    margin-bottom:0;
   }
   .schedule-time{
     flex:0 0 90px;          /* 시간 영역 고정 너비 */
@@ -84,11 +85,47 @@
     font-size:14px;
     color:#65a30d;
     white-space:nowrap;
+    align-self:flex-start;
+    margin-right:18px;      /* 시간-본문 간격 */
   }
+
+  /* 시간 옆 원형 도형 + 다음 항목까지 이어지는 세로선 */
+  .schedule-marker{
+    flex:0 0 10px;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-self:stretch;
+    margin-right:10px;      /* 마커-시간 간격 (기존 20px의 1/2) */
+  }
+  .schedule-marker .dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#65a30d;
+    margin-top:4px;
+    flex-shrink:0;
+    z-index:1;
+  }
+  .schedule-marker::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    top:16px;
+    bottom:-28px;          /* 텍스트 아래 여백(28px)만큼 다음 점까지 이어지게 */
+    width:1px;
+    background:var(--border);
+  }
+  .schedule-item:last-child .schedule-marker::after{
+    display:none;
+  }
+
   .schedule-body{
     flex:1;
     display:flex;
     flex-direction:column;
+    align-self:flex-start;
   }
   .schedule-desc{
     font-size:14px;
@@ -111,9 +148,14 @@
     color:#222222;
   }
   .schedule-sub li::before{
-    content:"•";
+    content:"";
     position:absolute;
     left:0;
+    top:7px;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#9a9aa0;
   }
   /* 설명 텍스트 없이 목록이 바로 시작될 때, 시간과 같은 높이에서 시작되도록 */
   .schedule-desc > .schedule-sub:first-child{
@@ -136,42 +178,77 @@
 </head>
 <body>
 
-  <h1>제목</h1>
-  <p class="desc">내용만 교체해서 사용하세요.</p>
+  <h1>속초 가족여행🐟</h1>
+  <p class="desc">안전하고 행복한 여행여행</p>
 
   <div class="schedule-wrap">
 
   <!-- 1번째 제목 -->
   <div class="section-primary">
-    <h2 class="section-title">1번째</h2>
+    <h2 class="section-title">7/23(금)</h2>
     <div class="schedule-list">
 
       <div class="schedule-item">
+        <div class="schedule-marker"><span class="dot"></span></div>
         <div class="schedule-time">09:00</div>
         <div class="schedule-body">
-          <div class="schedule-desc">설명 텍스트가 들어가는 자리입니다.</div>
-          <p class="schedule-comment">참고사항.</p>
-        </div>
+          <div class="schedule-desc">
+            출발
+          </div>
+      </div>
+
+
+
+       <div class="schedule-item">
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">01:00</div>
+        <div class="schedule-body">
+          <div class="schedule-desc">
+            점심 식사
+            <p class="schedule-comment">술 많이 먹고 해수욕은 위험!</p>
+          </div>
+      </div>
+
+
+      <div class="schedule-item">
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">03:00</div>
+        <div class="schedule-body">
+          <div class="schedule-desc">
+            해수욕
+          </div>
       </div>
 
       <div class="schedule-item">
-        <div class="schedule-time">10:30</div>
-        
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">05:00</div>
         <div class="schedule-body">
-          <div class="schedule-desc"><ul class="schedule-sub">
-              <li>항목 1입니다</li>
-              <li>항목 2입니다</li>
-              <li>항목 3입니다 항목 3입니다 항목 3입니다 항목 3입니다 항목 3입니다 항목 3입니다</li>
+          <div class="schedule-desc">
+            숙소 체크인 및 샤워
+          </div>
+      </div>
+         
+      <div class="schedule-item">
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">06:00</div>
+        <div class="schedule-body">
+          <div class="schedule-desc">
+            속초 중앙시장<br>
+            <ul class="schedule-sub">
+              <li>오징어회, 회</li>
+              <li>오징어순대</li>
+              <li>닭강정 등</li>
             </ul>
           </div>
-          <p class="schedule-comment">참고 사항을 입력하세요.</p>
+        
         </div>
       </div>
 
       <div class="schedule-item">
-        <div class="schedule-time">13:00</div>
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">08:00</div>
         <div class="schedule-body">
-          <div class="schedule-desc">설명 텍스트가 길어져도 시간 영역은 고정되고, 오른쪽 설명 영역만 줄바꿈됩니다.</div>
+          <div class="schedule-desc">숙소에서 저녁식사</div>
           <p class="schedule-comment">참고 사항을 입력하세요.</p>
         </div>
       </div>
@@ -181,25 +258,63 @@
 
   <!-- 2번째 제목 -->
   <div class="section-primary">
-    <h2 class="section-title">2번째</h2>
+    <h2 class="section-title">7/25(토)</h2>
     <div class="schedule-list">
 
       <div class="schedule-item">
-        <div class="schedule-time">14:00</div>
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">08:00</div>
         <div class="schedule-body">
-          <div class="schedule-desc">설명 텍스트가 들어가는 자리입니다.</div>
-          <p class="schedule-comment">참고 사항을 입력하세요.</p>
+          <div class="schedule-desc">아침 식사(라면)</div>
         </div>
       </div>
 
       <div class="schedule-item">
-        <div class="schedule-time">16:00</div>
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">10:00</div>
         <div class="schedule-body">
-          <div class="schedule-desc">설명 텍스트가 들어가는 자리입니다.</div>
-          <p class="schedule-comment">참고 사항을 입력하세요.</p>
+          <div class="schedule-desc">영랑호 산책</div>
+          <p class="schedule-comment">더울 수도 있어요</p>
         </div>
       </div>
 
+      <div class="schedule-item">
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">11:00</div>
+        <div class="schedule-body">
+          <div class="schedule-desc">바다정원 카페</div>
+          <p class="schedule-comment">애견 동반 가능</p>
+        </div>
+      </div>
+
+      <div class="schedule-item">
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">12:30</div>
+        <div class="schedule-body">
+          <div class="schedule-desc">영금정</div>
+        </div>
+      </div>
+
+      <div class="schedule-item">
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">01:30</div>
+        <div class="schedule-body">
+          <div class="schedule-desc">점심 식사</div>
+          <ul class="schedule-sub">
+              <li>물회</li>
+              <li>막국수</li>
+            </ul>
+        </div>
+      </div>
+
+ <div class="schedule-item">
+        <div class="schedule-marker"><span class="dot"></span></div>
+        <div class="schedule-time">03:00</div>
+        <div class="schedule-body">
+          <div class="schedule-desc">속초 대관람차</div>
+        </div>
+      </div>
+      
     </div>
   </div>
 
