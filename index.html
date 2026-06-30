@@ -26,8 +26,8 @@
   }
   .desc{
     color:var(--sub);
-    font-size:14px;
-    margin:32px;
+    font-size:13px;
+    margin:0 0 32px;
   }
   h2.section-title{
     font-size:18px;
@@ -58,7 +58,7 @@
     background:#ffffff;
     border-radius:12px;
     border:1px solid var(--border);
-    padding:32px 32px 28px;
+    padding:24px 24px 28px;
     margin-bottom:8px;
     box-shadow:0 4px 16px rgba(0,0,0,0.05);
   }
@@ -98,14 +98,26 @@
 
   /* 설명 안의 하위 목록 (- 항목 등) */
   .schedule-sub{
-    margin:0,6px 0 0;
-    padding-left:0,0,18px;
-    font-size:14px;
+    margin:6px 0 0;
+    padding-left:0;
+    list-style:none;
+    font-size:13px;
     color:#222222;
   }
   .schedule-sub li{
+    position:relative;
+    padding-left:14px;
     margin-bottom:2px;
     color:#222222;
+  }
+  .schedule-sub li::before{
+    content:"•";
+    position:absolute;
+    left:0;
+  }
+  /* 설명 텍스트 없이 목록이 바로 시작될 때, 시간과 같은 높이에서 시작되도록 */
+  .schedule-desc > .schedule-sub:first-child{
+    margin-top:0;
   }
 
   /* 리스트 아래 주석: 구분선 없이 여백으로만 구분 */
@@ -124,7 +136,7 @@
 </head>
 <body>
 
-  <h1>제목🐟</h1>
+  <h1>제목</h1>
   <p class="desc">내용만 교체해서 사용하세요.</p>
 
   <div class="schedule-wrap">
@@ -138,22 +150,20 @@
         <div class="schedule-time">09:00</div>
         <div class="schedule-body">
           <div class="schedule-desc">설명 텍스트가 들어가는 자리입니다.</div>
-            <ul class="schedule-sub">
-              <li>이렇게 항목도 가능⭐</li>
-              <li>이렇게 항목도 가능</li>
-            </ul>
           <p class="schedule-comment">참고사항.</p>
         </div>
       </div>
 
       <div class="schedule-item">
         <div class="schedule-time">10:30</div>
+        
         <div class="schedule-body">
-            <ul class="schedule-sub">
-              <li>이렇게 항목도 가능</li>
-              <li>이렇게 항목도 가능</li>
+          <div class="schedule-desc"><ul class="schedule-sub">
+              <li>항목 1입니다</li>
+              <li>항목 2입니다</li>
+              <li>항목 3입니다 항목 3입니다 항목 3입니다 항목 3입니다 항목 3입니다 항목 3입니다</li>
             </ul>
-          
+          </div>
           <p class="schedule-comment">참고 사항을 입력하세요.</p>
         </div>
       </div>
